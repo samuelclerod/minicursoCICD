@@ -7,4 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: ls -la
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: "12"
+      - run: npm ci
+      - run: npm test --coverage
+        env:
+          CI: true
+      - run: npm run build
